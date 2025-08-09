@@ -1,0 +1,7 @@
+GCP_CONN_ID="first_gcp_conn"
+GCP_PROJECT_ID = "coinproject-463620"
+GCS_BUCKET_NAME = "rental_bike_raw_data"
+BQ_DATASET_NAME = "bikerentapp"
+BQ_DAILY_TRIP_COUNT_TABLE_NAME = "daily_trip_counts"
+BQ_EXTERNAL_TABLE_NAME = "raw_tripdata_external"
+BQ_HOLIDAYS_TABLE = "holidays_and_weekends"
