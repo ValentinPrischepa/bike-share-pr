@@ -11,3 +11,4 @@ LATITUDE_DC = 38.9072
 LONGITUDE_DC = -77.0369
 
 WEATHER_API_BASE_URL = "https://archive-api.open-meteo.com/v1/archive"
+EMAIL_VALIDATION_SUBJECT = "Data Quality Validation Report"
