@@ -3,9 +3,8 @@ from airflow.providers.google.cloud.operators.dataproc import DataprocCreateClus
 from airflow.models import Variable
 import pendulum
 
-from constants import GCP_CONN_ID
+from constants import GCP_CONN_ID, GCP_PROJECT_ID
 
-PROJECT_ID = "coinproject-463620"
 REGION = "us-east1"
 CLUSTER_NAME = "dataproc-ml-cluster"
 BUCKET_NAME = "airflow_pr"  # Replace with your GCS bucket
@@ -16,7 +15,7 @@ CLUSTER_CONFIG = {
 }
 
 PYSPARK_JOB = {
-    "reference": {"project_id": PROJECT_ID},
+    "reference": {"project_id": GCP_PROJECT_ID},
     "placement": {"cluster_name": CLUSTER_NAME},
     "pyspark_job": {"main_python_file_uri": PYSPARK_URI},
 }
@@ -31,7 +30,7 @@ with DAG(
 
     create_cluster = DataprocCreateClusterOperator(
         task_id="create_cluster",
-        project_id=PROJECT_ID,
+        project_id=GCP_PROJECT_ID,
         cluster_config=CLUSTER_CONFIG,
         region=REGION,
         cluster_name=CLUSTER_NAME,
@@ -40,7 +39,7 @@ with DAG(
 
     submit_job = DataprocSubmitJobOperator(
         task_id="submit_pyspark_job",
-        project_id=PROJECT_ID,
+        project_id=GCP_PROJECT_ID,
         region=REGION,
         job=PYSPARK_JOB,
         gcp_conn_id=GCP_CONN_ID,
@@ -48,7 +47,7 @@ with DAG(
 
     delete_cluster = DataprocDeleteClusterOperator(
         task_id="delete_cluster",
-        project_id=PROJECT_ID,
+        project_id=GCP_PROJECT_ID,
         region=REGION,
         cluster_name=CLUSTER_NAME,
         trigger_rule="all_done",  # ensures cluster is deleted even if job fails

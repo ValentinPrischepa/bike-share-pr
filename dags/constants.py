@@ -6,6 +6,7 @@ BQ_DAILY_TRIP_COUNT_TABLE_NAME = "daily_trip_counts"
 BQ_EXTERNAL_TABLE_NAME = "raw_tripdata_external"
 BQ_HOLIDAYS_TABLE = "holidays_and_weekends"
 BQ_WEATHER_TABLE = "weather_daily_dc"
+BQ_TRAIN_DATASET = "ml_dataset"
 
 LATITUDE_DC = 38.9072
 LONGITUDE_DC = -77.0369
